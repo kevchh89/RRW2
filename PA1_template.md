@@ -17,7 +17,7 @@ Dset$date<-ymd(Dset$date)
 
 
 2 Histogram of the total steps per day
-```{r,echo=TRUE}
+```{r,echo=TRUE,results='asis'}
 StepDay<-tapply(Dset$steps,Dset$date,sum )
 hist(StepDay,xlab='Date',main = 'Histogram of steps per day')
 ```
