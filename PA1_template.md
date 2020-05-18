@@ -8,7 +8,7 @@ author: KB
 
 
 1 Read data set
-```{r}
+```{r,echo=TRUE}
 library(lubridate)
 Dset<-read.csv('activity.csv',na.strings = 'NA')
 Dset$date<-ymd(Dset$date)
@@ -22,13 +22,13 @@ StepDay<-tapply(Dset$steps,Dset$date,sum )
 hist(StepDay,xlab='Date',main = 'Histogram of steps per day')
 ```
 3 Mean and median of the total steps per day
-```{r}
+```{r,echo=TRUE}
 tapply(Dset$steps,Dset$date,mean)
 tapply(Dset$steps,Dset$date,median)
 ```
 
 4 Time series plot of the average number of steps taken
-```{r}
+```{r,echo=TRUE}
 library(reshape2)
 
 StepDayMean<-melt(tapply(Dset$steps,Dset$date,mean))
@@ -40,28 +40,28 @@ plot(x=as.numeric(ymd(StepDayMedian[,1])),y=StepDayMedian[,2],type='l',
 ```
 
 5 The 5-minute interval that, on average, contains the maximum number of steps
-```{r}
+```{r,echo=TRUE}
 DsetNArm<-subset(Dset, !is.na(Dset$steps))
 DsetNArm$interval[DsetNArm$steps==max(DsetNArm$steps)]
 ```
 
 6 Code to describe and show a strategy for imputing missing data
 
-```{r}
+```{r,echo=TRUE}
 NAs<-which(is.na(Dset$steps))
 Dset$steps[NAs]<-0
 ```
 
 7 Histogram of the total number of steps taken each day after missing values are imputed
 
-```{r}
+```{r,echo=TRUE}
 hist(tapply(Dset$steps,Dset$date,sum),xlab = 'date',main = 'Histogram of steps per day')
 ```
 
 8 Panel plot comparing the average number of steps taken per 5-minute 
 interval across weekdays and weekends
 
-```{r}
+```{r,echo=TRUE}
 library(lattice)
 Wds2<-wday(Dset$date)
 Wds3<-NA
